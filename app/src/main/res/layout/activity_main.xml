@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/background_color"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -21,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Log In"
+                android:textColor="@android:color/white"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:gravity="center"
                 />
@@ -29,6 +31,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Email:"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:background="@drawable/edittext_background"
+                android:padding="15dp"
                 android:id="@+id/email_login"
                 />
             <EditText
@@ -36,6 +42,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Password:"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:background="@drawable/edittext_background"
+                android:padding="15dp"
                 android:id="@+id/password_login"
                 />
             <Button
@@ -43,6 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Log In"
+                android:textColor="@android:color/white"
+                android:background="@drawable/edittext_background"
                 android:id="@+id/btn_login"
                 android:textAppearance="?android:textAppearanceMedium"
                 />
@@ -51,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Forget Password?"
+                android:textColor="@android:color/white"
                 android:id="@+id/forget_password"
                 android:padding="5dp"
                 />
@@ -59,6 +72,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Don't have account? Sign Up here."
+                android:textColor="@android:color/white"
                 android:id="@+id/signup_reg"
                 android:padding="5dp"
                 />

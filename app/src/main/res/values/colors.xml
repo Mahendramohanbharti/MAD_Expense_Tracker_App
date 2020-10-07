@@ -2,5 +2,8 @@
 <resources>
     <color name="colorPrimary">#321A55</color>
     <color name="colorPrimaryDark">#1B8F2E</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#18E49D</color>
+    
+    <color name="toolbar_color">#66E418</color>
+    <color name="nav_header">#188CE4</color>
 </resources>

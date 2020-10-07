@@ -5,5 +5,9 @@
     <color name="colorAccent">#18E49D</color>
     
     <color name="toolbar_color">#66E418</color>
-    <color name="nav_header">#188CE4</color>
+    <color name="nav_header">#E41837</color>
+
+    <color name="dashboard_color">#FFE4186A</color>
+    <color name="income_color">#FF18D3E4</color>
+    <color name="expense_color">#FFE46A18</color>
 </resources>

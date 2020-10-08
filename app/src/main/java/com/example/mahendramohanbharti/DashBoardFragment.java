@@ -14,13 +14,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mahendramohanbharti.Model.Data;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.core.DatabaseInfo;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 
 public class DashBoardFragment extends Fragment {
@@ -152,14 +157,25 @@ public class DashBoardFragment extends Fragment {
 
                 if(TextUtils.isEmpty(type)){
                     edtType.setError("Required failed...");
+                    return;
                 }
                 if(TextUtils.isEmpty(ammount)){
                     edtAmmout.setError("Required failed...");
+                    return;
                 }
                 int ourammountint=Integer.parseInt(ammount);
                 if(TextUtils.isEmpty(note)){
                     edtNote.setError("Required failed...");
+                    return;
                 }
+                String id=mIncomeDatabase.push().getKey();
+                String mDate= DateFormat.getDateInstance().format(new Date());
+                Data data=new Data(ourammountint,type,note,id,mDate);
+
+                mIncomeDatabase.child(id).setValue(data);
+                Toast.makeText(getActivity(),"Data ADDED",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {

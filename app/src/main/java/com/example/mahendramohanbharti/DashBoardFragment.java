@@ -61,6 +61,8 @@ public class DashBoardFragment extends Fragment {
         fab_main_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                addData();
+
                 if(isOpen){
                     fab_income_btn.startAnimation(FadClose);
                     fab_expense_btn.startAnimation(FadClose);
@@ -90,5 +92,21 @@ public class DashBoardFragment extends Fragment {
         });
 
         return myview;
+    }
+    private void addData(){
+        //Fab income Button...
+        fab_income_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        fab_expense_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
+
     }
 }

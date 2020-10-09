@@ -22,7 +22,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText mEmail;
     private EditText mPass;
     private Button btnReg;
-    private TextView mSignin;
+    private TextView mSignIn;
     private ProgressDialog mDialog;
 
     //Firebase...
@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
     mEmail=findViewById(R.id.email_reg);
     mPass=findViewById(R.id.password_reg);
     btnReg=findViewById(R.id.btn_reg);
-    mSignin=findViewById(R.id.signin_here);
+    mSignIn =findViewById(R.id.signin_here);
 
 
     btnReg.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +67,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),HomeActivity.class));
                 }else{
                     mDialog.dismiss();
-                    Toast.makeText(getApplicationContext(),"Registartion Failed",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Registration Failed",Toast.LENGTH_LONG).show();
                 }
                 }
             });
         }
     });
-    mSignin.setOnClickListener(new View.OnClickListener() {
+    mSignIn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             startActivity(new Intent(getApplicationContext(),MainActivity.class));

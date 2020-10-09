@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     mDialog.dismiss();
                     startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                    Toast.makeText(getApplicationContext(),"LogIn Sucessful..",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"LogIn Successful..",Toast.LENGTH_SHORT).show();
                 }else{
                     mDialog.dismiss();
                     Toast.makeText(getApplicationContext(),"Login Failed...",Toast.LENGTH_SHORT).show();

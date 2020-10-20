@@ -10,4 +10,6 @@
     <color name="dashboard_color">#FFE4186A</color>
     <color name="income_color">#FF18D3E4</color>
     <color name="expense_color">#FFE46A18</color>
+    <color name="white">#ffffff</color>
+
 </resources>

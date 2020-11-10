@@ -19,7 +19,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registration"
+                android:text="@string/registration"
                 android:textColor="@android:color/white"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:gravity="center"
@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Email:"
+                android:hint="@string/email"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:background="@drawable/edittext_background"
@@ -39,36 +39,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:hint="Password:"
+                android:padding="15dp"
+                android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
                 android:background="@drawable/edittext_background"
-                android:padding="15dp"
+                android:hint="@string/password"
                 android:id="@+id/password_reg"
                 />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Register"
-                android:textColor="@android:color/white"
+                android:text="@string/registration"
                 android:background="@drawable/edittext_background"
+                android:textColor="@android:color/white"
                 android:id="@+id/btn_reg"
                 android:textAppearance="?android:textAppearanceMedium"
                 />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Already have an account? Sign In."
                 android:textColor="@android:color/white"
                 android:id="@+id/signin_here"
+                android:text="@string/already_have_account_sign_in_here"
                 android:padding="5dp"
                 />
 
-
-
         </LinearLayout>
+
     </ScrollView>
+
 
 </LinearLayout>

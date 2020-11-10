@@ -1,8 +1,5 @@
 package com.example.mahendramohanbharti;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +10,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
+
     private EditText mEmail;
     private EditText mPass;
     private Button btnLogin;
@@ -27,8 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
     private ProgressDialog mDialog;
 
-    //Firebase...
+    //Firebase..
+
     private FirebaseAuth mAuth;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,66 +41,81 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth=FirebaseAuth.getInstance();
 
-        if(mAuth.getCurrentUser()!=null){
+        if (mAuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
         }
 
         mDialog=new ProgressDialog(this);
+
         loginDetails();
+
     }
-    public void loginDetails(){
-    mEmail=findViewById(R.id.email_login);
-    mPass=findViewById(R.id.password_login);
-    btnLogin=findViewById(R.id.btn_login);
-    mForgetPassword=findViewById(R.id.forget_password);
-    mSignupHere=findViewById(R.id.signup_reg);
 
-    btnLogin.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String email=mEmail.getText().toString().trim();
-            String pass=mPass.getText().toString().trim();
+    private void loginDetails(){
 
-            if(TextUtils.isEmpty(email)){
-                mEmail.setError("Email Required...");
-                return ;
-            }
-            if(TextUtils.isEmpty(pass)){
-                mPass.setError("Password Required...");
-                return;
-            }
-            mDialog.setMessage("Processing...");
-            mDialog.show();
-            mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    mDialog.dismiss();
-                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                    Toast.makeText(getApplicationContext(),"LogIn Successful..",Toast.LENGTH_SHORT).show();
-                }else{
-                    mDialog.dismiss();
-                    Toast.makeText(getApplicationContext(),"Login Failed...",Toast.LENGTH_SHORT).show();
+        mEmail=findViewById(R.id.email_login);
+        mPass=findViewById(R.id.password_login);
+        btnLogin=findViewById(R.id.btn_login);
+        mForgetPassword=findViewById(R.id.forget_password);
+        mSignupHere=findViewById(R.id.signup_reg);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String email=mEmail.getText().toString().trim();
+                String pass=mPass.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email)){
+                    mEmail.setError("Email Required..");
+                    return;
                 }
+                if (TextUtils.isEmpty(pass)){
+                    mPass.setError("Password Required..");
+                    return;
                 }
-            });
 
-        }
-    });
-    //Registration Activity
-    mSignupHere.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
-        }
-    });
+                mDialog.setMessage("Processing..");
+                mDialog.show();
 
-    //Reset Activity
+                mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+
+                            mDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                            Toast.makeText(getApplicationContext(),"Login Successful..",Toast.LENGTH_SHORT).show();
+                        }else {
+                            mDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),"Login Failed..",Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
+
+            }
+        });
+
+        // Registration activity
+
+        mSignupHere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),RegistrationActivity.class));
+            }
+        });
+
+        //Reset password activity..
+
         mForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),ResetActivity.class));
             }
         });
+
     }
+
+
 }

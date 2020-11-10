@@ -33,6 +33,9 @@
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 1
+        },
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
@@ -40,6 +43,9 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }

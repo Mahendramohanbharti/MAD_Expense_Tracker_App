@@ -1,5 +1,10 @@
 package com.example.mahendramohanbharti;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,23 +14,23 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
 
-    //Fragment
 
+    //Fragment
     private DashBoardFragment dashBoardFragment;
     private IncomeFragment incomeFragment;
     private ExpenseFragment expenseFragment;
+
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +38,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar=findViewById(R.id.my_toolbar);
-        toolbar.setTitle("Expense Tracker");
+        toolbar.setTitle("Expense Manager");
         setSupportActionBar(toolbar);
+
+        mAuth=FirebaseAuth.getInstance();
 
         bottomNavigationView=findViewById(R.id.bottomNavigationbar);
         frameLayout=findViewById(R.id.main_frame);
@@ -47,6 +54,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+
         NavigationView navigationView=findViewById(R.id.naView);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -58,16 +66,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()){
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+
                     case R.id.dashboard:
                         setFragment(dashBoardFragment);
-                    bottomNavigationView.setItemBackgroundResource(R.color.dashboard_color);
-                    return true;
+                        bottomNavigationView.setItemBackgroundResource(R.color.dasboard_color);
+                        return true;
 
                     case R.id.income:
                         setFragment(incomeFragment);
-                        bottomNavigationView.setItemBackgroundResource(R.color.income_color);
+                        bottomNavigationView.setItemBackgroundResource(R.color.income_coloer);
                         return true;
 
                     case R.id.expense:
@@ -77,55 +86,79 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
                     default:
                         return false;
+
                 }
             }
         });
 
-
     }
 
     private void setFragment(Fragment fragment) {
+
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame,fragment);
         fragmentTransaction.commit();
+
+
     }
 
     @Override
     public void onBackPressed() {
+
         DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
-        if(drawerLayout.isDrawerOpen(GravityCompat.END)){
+
+        if (drawerLayout.isDrawerOpen(GravityCompat.END)){
             drawerLayout.closeDrawer(GravityCompat.END);
         }else {
             super.onBackPressed();
         }
+
+
     }
 
+
     public void displaySelectedListener(int itemId){
+
         Fragment fragment=null;
+
         switch (itemId){
             case R.id.dashboard:
                 fragment=new DashBoardFragment();
-            break;
+                break;
+
             case R.id.income:
+
                 fragment=new IncomeFragment();
-            break;
+
+                break;
+
             case R.id.expense:
                 fragment=new ExpenseFragment();
-            break;
+                break;
+
+            case R.id.logout:
+                mAuth.signOut();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                break;
+
         }
 
-        if(fragment!=null){
+        if (fragment!=null){
+
             FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.main_frame,fragment);
             ft.commit();
+
         }
 
         DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
+
     }
+
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        displaySelectedListener(menuItem.getItemId());
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        displaySelectedListener(item.getItemId());
         return true;
     }
 }

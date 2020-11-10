@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="5dp"
+    android:layout_margin="5dp"
     android:elevation="5dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +20,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="6 July 2018"
+                android:text="@string/_6_june_2018"
+                android:layout_margin="5dp"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textStyle="bold"
                 android:id="@+id/date_txt_expense"
-                android:textColor="@color/date_color"/>
+                android:textColor="@color/date_color"
+                />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -33,16 +37,17 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Type"
+                android:text="@string/type"
                 android:maxLines="1"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textStyle="bold"
                 android:id="@+id/type_txt_expense"
-                android:textColor="@android:color/black"/>
+                android:textColor="@android:color/black"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Note"
+                android:text="@string/note"
                 android:maxLines="1"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textStyle="bold"
@@ -50,6 +55,7 @@
                 android:layout_below="@+id/type_txt_expense"
                 android:id="@+id/note_txt_expense"
                 />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -59,11 +65,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="60000"
+                android:text="@string/ammount"
                 android:textAppearance="?android:textAppearanceSmall"
                 android:textStyle="bold"
-                android:id="@+id/amount_txt_expense"
-                android:textColor="@color/expense_amount"/>
+                android:id="@+id/ammount_txt_expense"
+                android:textColor="@color/expense_ammount_color"
+                />
+
         </RelativeLayout>
 
     </LinearLayout>
